@@ -1,0 +1,33 @@
+@import "../../scss/theme.scss";
+
+$danger: $red;
+$info: $blue;
+$warning: $yellow;
+$learn: $brown;
+$success: $green;
+
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+
+  // Colors for specific icons
+  &.info {
+    stroke: $info;
+  }
+  &.danger {
+    stroke: $danger;
+  }
+  &.warning {
+    stroke: $yellow;
+  }
+  &.success {
+    stroke: $success;
+  }
+  &.learn {
+    stroke: $brown;
+  }
+  &.neutral {
+    stroke: $default;
+  }
+}
