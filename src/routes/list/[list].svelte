@@ -1,18 +1,34 @@
+<script context="module">
+	import { listsStore } from "../../stores";
+	export async function preload(page, session) {
+	  const { list } = page.params;
+
+	  return { list: listsStore.get(list) };
+	}
+</script>
+
 <script>
   import List from "../../components/List.svelte";
+  import { onMount } from "svelte";
   const { log } = console;
+
+  export let list;
+
+  onMount(() => {
+    console.log(list);
+  })
 
   let oops = false;
 
   let uid = 1;
 
-  let todos = [
+  /* let todos = [
     { id: uid++, done: false, label: "one" },
     { id: uid++, done: false, label: "two" },
     { id: uid++, done: false, label: "three" },
     { id: uid++, done: false, label: "four" },
     { id: uid++, done: false, label: "five" }
-  ];
+  ]; */
 
   let newTodoLabel = "";
 
@@ -23,7 +39,7 @@
         done: false,
         label: newTodoLabel
       };
-      todos = [todo, ...todos];
+      list.add(todo);
       newTodoLabel = "";
     } else {
       /**
@@ -143,7 +159,7 @@
 </style>
 
 <main>
-  <List bind:todos />
+  <List bind:todos={list} />
 </main>
 
 <div class="footer">

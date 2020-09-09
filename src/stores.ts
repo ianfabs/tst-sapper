@@ -7,19 +7,21 @@ interface Task {
 }
 
 interface ListStore {
-  [listName: string]: Task[];
+  label: string;
+  tasks: Writable<Task[]>;
 }
 
 export const lists = () => {
-  const __lists = writable<ListStore>({});
+  const __lists = writable<ListStore[]>([]);
   const { subscribe, set, update } = __lists;
 
   return {
     subscribe,
-    add: (name: string, list: Writable<Task[]> | Task[]) => {
+    get: (name: string) => __lists[name],
+    add: (name: string, list: any) => {
       update((l) => ({
         ...l,
-        ...{ [name]: (list as unknown) as Task[] }
+        ...{ [name]: list }
       }));
     },
     remove: (name: string) => {
@@ -28,9 +30,11 @@ export const lists = () => {
         return l;
       });
     },
-    empty: () => set({})
+    empty: () => set([])
   };
 };
+
+export const listsStore = lists();
 
 export const list = (name: string) => {
   const __list = writable<Task[]>([]);
@@ -38,7 +42,7 @@ export const list = (name: string) => {
 
   const count = derived(__list, ($list) => $list.length);
 
-  return {
+  const l = {
     count,
     subscribe,
     // Should this be set? Or can it stay update
@@ -46,4 +50,8 @@ export const list = (name: string) => {
     remove: (id: number) => update((tasks) => tasks.filter((t) => t.id !== id)),
     empty: set([])
   };
+
+  listsStore.add(name, l);
+
+  return l;
 };

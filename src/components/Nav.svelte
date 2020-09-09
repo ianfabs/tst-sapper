@@ -88,5 +88,10 @@
         aria-current={segment === 'list' ? 'list' : undefined}
         href="list">list</a>
     </li>
+    <li>
+      <a
+        aria-current={segment === 'list/new' ? 'new list' : undefined}
+        href="list/new">new list</a>
+    </li>
   </ul>
 </nav>

@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
   import { list } from "../../stores";
+  import { goto } from "@sapper/app";
 
   let list_name = "";
 
-  const newList = event => {
-    console.log(list_name);
-    list(list_name);
-    list_name = "";
+  const newList = async event => {
+    let __list = list(list_name);
+    await goto(`/list/${ln}`);
   };
 </script>
 
