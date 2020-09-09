@@ -1,6 +1,6 @@
 {
-  "name": "task-man",
-  "description": "A task manager written in svelte and sapper",
+  "name": "taskoj",
+  "description": "A beautiful and fast task manager",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
@@ -42,10 +42,9 @@
     "typescript": "^4.0.2"
   },
   "keywords": [
+    "tasks",
+    "task-manager",
     "sapper",
-    "webapp",
-    "todo",
-    "svelte",
-    "task"
+    "svelte"
   ]
 }

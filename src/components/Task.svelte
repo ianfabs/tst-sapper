@@ -9,11 +9,11 @@
 
   const dispatch = createEventDispatcher();
 
-  const onChange = (event) => {
+  const onChange = event => {
     dispatch("change", task);
   };
 
-  const onRemove = (event) => {
+  const onRemove = event => {
     dispatch("remove", task);
   };
 </script>
@@ -32,8 +32,6 @@
     background: $bg;
     padding: 2vmin 3vmin;
     margin: 2px 4px;
-    width: max-content;
-    min-width: 60vw;
     font-size: 1.2em;
     border-radius: 3px;
     border: 2px solid $borderColor;
@@ -50,6 +48,7 @@
   }
 
   span span.label {
+    font-size: 1.25em;
     margin-left: 2%;
     letter-spacing: 0.05em;
     width: 100%;

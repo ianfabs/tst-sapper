@@ -11,17 +11,17 @@
     { id: uid++, done: false, label: "two" },
     { id: uid++, done: false, label: "three" },
     { id: uid++, done: false, label: "four" },
-    { id: uid++, done: false, label: "five" },
+    { id: uid++, done: false, label: "five" }
   ];
 
   let newTodoLabel = "";
 
-  const add = (event) => {
+  const add = event => {
     if (newTodoLabel != "") {
       const todo = {
         id: uid++,
         done: false,
-        label: newTodoLabel,
+        label: newTodoLabel
       };
       todos = [todo, ...todos];
       newTodoLabel = "";
@@ -54,26 +54,27 @@
   $dangerColor: $red;
   $trans: (
     "duration": 200ms,
-    "timing": ease-in-out,
+    "timing": ease-in-out
   );
 
   div.footer {
+    padding: 1vmin;
     position: fixed;
-    bottom: 1px;
-    font-size: 2em;
-    padding-bottom: 1vmin;
+    bottom: 0;
+    left: 0;
     display: grid;
-    grid-template-columns: minmax(75vw, 90%) 10%;
-    column-gap: 1vmin;
+    grid-template-columns: 19fr 1fr;
 
     & .add-btn {
       background: $teal;
       border: 4px solid $teal;
       border-radius: 4px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
       outline: none;
       cursor: pointer;
-      height: 100%;
       & .icon {
+        width: 3.25em;
         stroke: $black;
       }
 
@@ -86,11 +87,12 @@
       }
     }
     & input {
-      padding: 1vmin;
+      padding: 1vmin 2vmin;
       margin: 0;
       font-size: 1.2em;
-      width: 100%;
       border-radius: 4px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
       border: 4px solid $teal;
       color: $teal;
       background: transparent;

@@ -5,7 +5,7 @@
 
   const dispatch = createEventDispatcher();
 
-  const toggle = (event) => {
+  const toggle = event => {
     value = !value;
     dispatch("check", { target: value });
   };
@@ -16,15 +16,15 @@
   $fg: $teal;
   .Checkbox {
     color: $fg;
-    border: 2px solid $fg;
+    border: 3px solid $fg;
     padding: 1px;
     border-radius: 3px;
     cursor: pointer;
     background: transparent;
-    outline: none;
-    width: 1.75em;
-    height: 1.75em;
     transition: color 200ms, border 200ms;
+    width: 2em;
+    height: 2em;
+    line-height: 2.25em;
     &.checked {
       color: desaturate($fg, 40%);
       border: 2px solid desaturate($fg, 40%);
@@ -33,6 +33,7 @@
 
   .icon {
     stroke: transparent;
+
     transition: stroke 200ms;
     &.checked {
       stroke: desaturate($fg, 40%);
