@@ -1,4 +1,4 @@
-import { writable, derived } from "svelte/store";
+import { writable, derived, Writable } from "svelte/store";
 
 interface Task {
   id: number;
@@ -10,12 +10,33 @@ interface ListStore {
   [listName: string]: Task[];
 }
 
-export const lists = writable<ListStore>({});
+export const lists = () => {
+  const __lists = writable<ListStore>({});
+  const { subscribe, set, update } = __lists;
 
-export const newList = () => {
-  const list = writable<Task[]>([]);
-  const { subscribe, set, update } = list;
-  const count = derived(list, ($list) => $list.length);
+  return {
+    subscribe,
+    add: (name: string, list: Writable<Task[]> | Task[]) => {
+      update((l) => ({
+        ...l,
+        ...{ [name]: (list as unknown) as Task[] }
+      }));
+    },
+    remove: (name: string) => {
+      update((l) => {
+        delete l[name];
+        return l;
+      });
+    },
+    empty: () => set({})
+  };
+};
+
+export const list = (name: string) => {
+  const __list = writable<Task[]>([]);
+  const { subscribe, set, update } = __list;
+
+  const count = derived(__list, ($list) => $list.length);
 
   return {
     count,

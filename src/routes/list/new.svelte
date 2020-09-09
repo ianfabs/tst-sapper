@@ -1,7 +1,13 @@
 <script>
-  import { newList } from "../../stores";
+  import { list } from "../../stores";
 
   let list_name = "";
+
+  const newList = event => {
+    console.log(list_name);
+    list(list_name);
+    list_name = "";
+  };
 </script>
 
 <style type="text/scss">
@@ -60,5 +66,7 @@
 </label>
 <div class="group">
   <input type="text" bind:value={list_name} name="list_name" id="list_name" placeholder="eggs i like"/>
-  <input type="button" on:click={() => {}} id="save" value="save"/>
+  <button on:click={newList} id="save">
+  save
+  </button>
 </div>
